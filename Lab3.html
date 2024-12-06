@@ -1,0 +1,52 @@
+<DOCTYPE! html>
+	<html>
+	<head>
+	</head>
+	<body>
+		<input type="number" id="num" name="name">
+	    <button onclick="guess()">Guess</button> 
+	    <p id="message"></p>
+		<script>
+		  var random = Math.floor(Math.random() * 100) + 1;
+        var min = 1;
+        var max = 100;
+        var attempts = 10;
+
+        function guess() {
+            var input = parseInt(document.getElementById("num").value);
+
+            if (isNaN(input) || input < min || input > max) {
+                document.getElementById("message").innerText = "請輸入有效的數字";
+                return;
+            }
+
+
+            attempts--;
+
+            if (input < random) {
+                min = input + 1;
+                alert("太小了！範圍：" + min + " ~ " + max +  "還剩下 "+attempts+" 次機會");document.body.style.backgroundImage = "url('wrong.jpg')";
+
+
+            } else if (input > random) {
+                max = input - 1;
+                alert("太小了！範圍：" + min + " ~ " + max +  "還剩下 "+attempts+" 次機會");
+                    document.body.style.backgroundImage = "url('wrong.jpg')";
+            } else {
+                alert("恭喜你答對了");
+                document.body.style.backgroundImage = "url('correct.jpg')";
+
+                return;
+            }
+
+            if (attempts === 0) {
+                alert("遊戲結束！你是輸家！");
+            }
+        }
+			
+		</script>
+
+	</body>
+	</html>
+
+
